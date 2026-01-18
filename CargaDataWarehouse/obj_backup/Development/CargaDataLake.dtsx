@@ -1,0 +1,557 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/8/2026 3:13:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JARVIS"
+  DTS:CreatorName="JARVIS\ricar"
+  DTS:DTSID="{440266DB-A4F3-49DC-8F37-6F767882CFDD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="CargaDataLake"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{25982E96-0DC3-4179-A94E-43264F10C945}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Conexão com o arquivo EMPRESA CSV]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Conexão com o arquivo EMPRESA CSV"
+      DTS:DTSID="{B760CD7F-4515-4A3D-A9A6-B028F9483A2A}"
+      DTS:ObjectName="Conexão com o arquivo EMPRESA CSV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\FONTES\DATA\DIMENSOES\EMPRESA\IN\EMPRESA.CSV">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LOJA"
+              DTS:DTSID="{77705DC8-50EB-4483-8FBB-C008363C8B1F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME_LOJA"
+              DTS:DTSID="{512D2949-452C-458F-B595-F2C81F9312DD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EMPRESA"
+              DTS:DTSID="{C33B4195-A3E5-453E-A3F8-572D2BB14843}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNPJ"
+              DTS:DTSID="{5A8A94BF-710A-470C-94E1-49FF499AB624}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TAMANHO"
+              DTS:DTSID="{409F4F0B-0F86-41FA-8601-9C767985E11F}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga de Empresas"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{76885286-70E3-4BA4-88A7-9C06B9DA6D09}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga de Empresas"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga de Empresas\Acrescentar coluna de metadados"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Acrescentar coluna de metadados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Carga de Empresas\Acrescentar coluna de metadados.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Coluna Derivada].Columns[ARQUIVO_ORIGEM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      length="11"
+                      lineageId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Coluna Derivada].Columns[ARQUIVO_ORIGEM]"
+                      name="ARQUIVO_ORIGEM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">"EMPRESA.CSV"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"EMPRESA.CSV"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Coluna Derivada].Columns[DATA_CARGA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Coluna Derivada].Columns[DATA_CARGA]"
+                      name="DATA_CARGA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Carga de Empresas\Acrescentar coluna de metadados.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga de Empresas\Coluna Derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Coluna Derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Carga de Empresas\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga de Empresas\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Carga de Empresas\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Carga de Empresas\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Carga de Empresas\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga de Empresas\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga de Empresas\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Origem de Arquivo Simples;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Origem de Arquivo Simples"
+              localeId="1046"
+              name="Conexao com Arquivo EMPRESA CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica se colunas de comprimento zero são tratadas como nulas."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome de uma coluna de saída que contém o nome do arquivo. Se nenhum nome for especificado, nenhuma coluna de saída contendo o nome de arquivo será gerada."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Conexão com o arquivo EMPRESA CSV]"
+                  connectionManagerRefId="Package.ConnectionManagers[Conexão com o arquivo EMPRESA CSV]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples]"
+                  name="Saída de Origem de Arquivo Simples">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[LOJA]"
+                      length="50"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[LOJA]"
+                      name="LOJA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[NOME_LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[NOME_LOJA]"
+                      length="50"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[NOME_LOJA]"
+                      name="NOME_LOJA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[EMPRESA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[EMPRESA]"
+                      length="50"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[EMPRESA]"
+                      name="EMPRESA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[CNPJ]"
+                      length="50"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[CNPJ]"
+                      name="CNPJ"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[TAMANHO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[TAMANHO]"
+                      length="50"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].Columns[TAMANHO]"
+                      name="TAMANHO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[NOME_LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NOME_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[EMPRESA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EMPRESA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CNPJ" />
+                    <externalMetadataColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[TAMANHO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TAMANHO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem de Arquivo Simples">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Coluna de Saída de Erro de Origem de Arquivo Simples"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
+                      name="Coluna de Saída de Erro de Origem de Arquivo Simples" />
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga de Empresas.Paths[Saída de Coluna Derivada]"
+              endId="Package\Carga de Empresas\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Coluna Derivada"
+              startId="Package\Carga de Empresas\Acrescentar coluna de metadados.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\Carga de Empresas.Paths[Saída de Origem de Arquivo Simples]"
+              endId="Package\Carga de Empresas\Acrescentar coluna de metadados.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Origem de Arquivo Simples"
+              startId="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV.Outputs[Saída de Origem de Arquivo Simples]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\Carga de Empresas"
+          TopLeft="51,42" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carga de Empresas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="246.4,41.6"
+          Id="Package\Carga de Empresas\Acrescentar coluna de metadados"
+          TopLeft="100.000000596046,140.000000298023" />
+        <NodeLayout
+          Size="268.8,41.6"
+          Id="Package\Carga de Empresas\Conexao com Arquivo EMPRESA CSV"
+          TopLeft="86,56" />
+        <EdgeLayout
+          Id="Package\Carga de Empresas.Paths[Saída de Origem de Arquivo Simples]"
+          TopLeft="221.800000298023,97.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4000002980232"
+              Start="0,0"
+              End="0,34.9000002980232">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9000002980232" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,9.45000014901161,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Carga de Empresas\Coluna Derivada"
+          TopLeft="151.166664414108,259.166662804782" />
+        <EdgeLayout
+          Id="Package\Carga de Empresas.Paths[Saída de Coluna Derivada]"
+          TopLeft="223.183332505077,181.600000298023">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77.5666625067592"
+              Start="0,0"
+              End="0,70.0666625067592">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.0666625067592" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,27.0333312533796,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
